@@ -1,0 +1,711 @@
+@font-face {
+    font-family: "Noto Sans CJK JP";
+    src: url(../fonts/NotoSansCJKjp-hinted/NotoSansCJKjp-Medium.otf);
+}
+
+@font-face {
+    font-family: "Noto Sans CJK JP";
+    font-weight: bold;
+    src: url(../fonts/NotoSansCJKjp-hinted/NotoSansCJKjp-Bold.otf);
+}
+
+@font-face {
+    font-family: "Popins";
+    src: url(../fonts/poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: "Robot";
+    src: url(../fonts/roboto/RobotoCondensed-Regular.ttf);
+}
+
+body {
+    background-color: #202d3e;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:active {
+    color: #fff;
+}
+
+a:visited {
+    color: #fff;
+}
+
+a.selected {
+    background-color: #152130;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: bottom;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f3f5f7;
+    font-family: "Noto Sans CJK JP";
+    font-weight: bold;
+    font-size: 13px;
+    text-align: left;
+    border-top: 1px solid #c6cfdb;
+    border-bottom: 1px solid #c6cfdb;
+    padding: 7px 20px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #c6cfdb;
+}
+
+td {
+    font-family: "Noto Sans CJK JP";
+    font-size: 13px;
+    padding: 11.5px 14px;
+    text-align: left;
+}
+
+select {
+    font-family: "Noto Sans CJK JP";
+    font-size: 12px;
+    color: #435269;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+option {
+    width: 300px;
+    appearance: none;
+    background-color: none;
+    border: 1px solid #000;
+    outline: none;
+}
+
+.bg {
+    background-image: url(../img/top/morning/bg-morning.png);
+    background-size: cover;
+}
+
+.flex {
+    display:-webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: start;
+	-ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.flex-ct {
+    justify-content: center;
+    align-items: center;
+}
+
+.side-bar {
+    background-color: #202d3e;
+    width: 13%;
+    /* height: 100vh; */
+    height: 100%;
+}
+
+
+
+.side-bar a {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 35px;
+}
+
+@media screen and (max-width: 1300px) {
+    .side-bar a {
+        padding: 5px 24px;
+    }
+}
+
+.side-bar p {
+    position: relative;
+    font-family: "Noto Sans CJK JP";
+    color: #fff;
+    font-size: 13px;
+    /* padding: 10px 35px; */
+}
+
+@media screen and (max-width: 1300px) {
+    .side-bar p {
+        font-size: 10px;
+    }
+}
+
+.nav-f p::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translate(-30px, -39%);
+    background-image: url(../img/nav/arrow.png);
+    width: 9px;
+    height: 11px;
+}
+
+@media screen and (max-width: 1300px) {
+    .side-bar p::after {
+        transform: translate(-17px, -39%);
+    }
+}
+
+.nav-f {
+    position: relative;
+    padding: 45px 0;
+}
+
+@media screen and (max-width: 1300px) {
+    .nav-f {
+        padding: 22px 0;
+    }
+}
+
+.nav-f > .nav-demo::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 45px;
+    transform: translate(0, -80%);
+    background-image: url(../img/nav/arrow-demo.png);
+    width: 10px;
+    height: 16px;
+}
+
+@media screen and (max-width: 1300px) {
+    .nav-f > .nav-demo::after {
+        left: 26px;
+    }
+}
+
+p.nav-demo {
+    font-size: 11px;
+    padding: 10px 25px;
+}
+
+.nav-back {
+    padding-bottom: 45px;
+}
+
+.nav-back p {
+    position: relative;
+}
+
+.nav-back p::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 37px;
+    transform: translate(0, -30%);
+    background-image: url(../img/nav/arrow-back.png);
+    width: 9px;
+    height: 11px;
+}
+
+.nav-back a {
+    background-color: #283549;
+    padding: 20px 55px;
+}
+
+@media screen and (max-width: 1300px) {
+    .nav-back a {
+        padding: 13px 55px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    p.nav-demo {
+        padding: 8px 16px;
+    }
+}
+
+.nav-f {
+    position: relative;
+    padding: 45px 0;
+}
+
+@media screen and (max-width: 1300px) {
+    .nav-f {
+        padding: 22px 0;
+    }
+}
+
+.nav-4f::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: url(../img/nav/side-4F.png);
+    width: 60px;
+    height: 20px;
+}
+
+.nav-3f::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: url(../img/nav/side-3F.png);
+    width: 60px;
+    height: 20px;
+}
+
+.nav-2f::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: url(../img/nav/side-2F.png);
+    width: 60px;
+    height: 20px;
+}
+
+.nav-1f::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: url(../img/nav/side-1F.png);
+    width: 60px;
+    height: 20px;
+}
+
+.pages {
+    position: relative;
+    width: 87%;
+    /* height: 100vh; */
+    height: 100%;
+}
+
+.top-status {
+    margin-top: 40px;
+}
+
+.period-swich {
+    background-color: #7b90a9;
+    width: 630px;
+    padding: 8px;
+    border-radius: 12px;
+    margin: 0 0 0 45px;
+}
+
+.period-swich p {
+    position: relative;
+    font-family: "Robot";
+    font-size: 25px;
+    color: #fff;
+    /* transform: scale(1.3, 1); */
+    padding: 9px 65px;
+    border-radius: 12px;
+    /* line-height: 50px; */
+}
+
+.period-swich p:nth-child(n+2)::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: -11px;
+    width: 2px;
+    height: 40px;
+    background-color: #bbcbde;
+
+}
+
+.period-swich p.active {
+    background-color: #fff;
+    color: #222a35;
+}
+
+time {
+    font-family: "Robot";
+    font-size: 73px;
+    margin-right: 70px;
+    transform: scale(1.2, 1);
+}
+
+time span {
+    font-size: 26px;
+    vertical-align: top;
+    line-height: 70px;
+    margin-left: 8px;
+}
+
+.building {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    width: 74.3%;
+    height: 40vw;
+    margin-left: auto;
+    margin-bottom: 50px;
+}
+
+/* .floor {
+    position: relative;
+
+} */
+
+.floor4 {
+    position: relative;
+    background-image: url(../img/top/morning/4F_gauge/4F_1.png);
+    background-size: contain;
+    width: 100%;
+    height: 13.5vw;
+}
+
+.floor4::before {
+    position: absolute;
+    content: "";
+    top: 100px;
+    left: -100px;
+    width: 100px;
+    height: 80px;
+    background-image: url(../img/top/4F.png);
+
+}
+
+.floor3 {
+    position: relative;
+    background-image: url(../img/top/morning/3F_gauge/3F_1.png);
+    background-size: contain;
+    width: 100%;
+    height: 8.7vw;
+}
+
+.floor3::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -100px;
+    width: 100px;
+    height: 80px;
+    background-image: url(../img/top/3F.png);
+
+}
+
+.floor2 {
+    position: relative;
+    background-image: url(../img/top/morning/2F_gauge/2F_1.png);
+    background-size: contain;
+    width: 100%;
+    height: 8.7vw;
+}
+
+.floor2::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -100px;
+    width: 100px;
+    height: 80px;
+    background-image: url(../img/top/2F.png);
+}
+
+.floor1 {
+    position: relative;
+    background-image: url(../img/top/morning/1F_gauge/1F_1.png);
+    background-size: contain;
+    width: 100%;
+    height: 9vw;
+}
+
+.floor1::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -100px;
+    width: 100px;
+    height: 80px;
+    background-image: url(../img/top/1F.png);
+}
+
+.page {
+    background-color: #e7ecf4;
+    height: 100%;
+    padding: 66px 38px 40px;
+}
+
+#update-time {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-family: "Noto Sans CJK JP";
+    font-size: 16px;
+}
+
+.flex-child-left {
+    /* contentでの比率57.85% */
+    width: 57.05%;
+    height: 90vh;
+}
+
+.flex-child-right {
+    width: 41.35%;
+    height: 90vh;
+}
+
+.content {
+    background-color: #fff;
+    border-radius: 11px;
+}
+
+.content p {
+    background-color: #fff;
+    font-family: "Popins";
+    font-size: 19.5px;
+    padding: 18px 23px 16px;
+    border-radius: 11px;
+    text-align: left;
+}
+
+/* ----------------js切り替え---------------- */
+
+#page {
+    /* jsで切り替え */
+    /* display: none; */
+    background-image: url(../img/pages/2F/ttl_area.png);
+    background-position: 38px 25px;
+}
+
+#floor2-meeting-el {
+    display: none;
+}
+
+#floor2-project-el {
+
+}
+
+
+.floor-map-1F {
+    background-position: 25px 23px;
+    height: 44.5%;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.floor-map-1F img{
+    /* margin-top: 65px; */
+}
+
+.population {
+    position: relative;
+    /* background-image: url(../img/pages/1F/h-Population.png); */
+    background-position: 25px 23px;
+    height: 52.5%;
+}
+
+
+
+.tb-select {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    border: 1px solid #afb8c5;
+    border-radius: 3px;
+}
+
+.tb-select select {
+    padding: 0 35px 0 15px;
+}
+
+.tb-select::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #afb8c5;
+}
+
+.content-pd {
+    padding: 0 4.8%;
+}
+
+.pd {
+    padding: 0 1.5% 0 2.8%;
+    height: calc(100% - 63.6px);
+}
+
+.table-area {
+    height: 100%;
+    overflow-y: scroll;
+    padding-right: 1.5%;
+}
+
+.table-area::-webkit-scrollbar {
+    width: 7px;
+    /* height: 10%; */
+    margin-right: 5px;
+    padding-right: 5px;
+}
+
+.table-area::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #b9bdc2;
+}
+
+.live-camera {
+    height: 100%;
+    overflow: scroll;
+    /* padding: 0 3.7%; */
+}
+
+.live-camera::-webkit-scrollbar {
+    width: 7px;
+    /* height: 10%; */
+    margin-right: 5px;
+    padding-right: 5px;
+}
+
+.live-camera::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #b9bdc2;
+}
+
+.camera-area {
+    padding-right: 1.85%;
+}
+
+.camera-area div {
+    width: 48.65%;
+}
+
+.floor-map-2F {
+    margin-bottom: 4%;
+    height: 31%;
+}
+
+.floor2F-number-pd {
+    padding-bottom: 17px;
+}
+
+.rate-figure {
+    margin-bottom: 25px;
+}
+
+.use-rate-area {
+    margin-left: 35px;
+}
+
+.use-rate-area p {
+    padding: 0;
+}
+
+.use-rate-area p:nth-child(1) {
+    font-family: "Noto Sans CJK JP";
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.use-rate-area p:nth-child(2) {
+    font-family: "Popins";
+    font-size: 84px;
+    line-height: 84px;
+    vertical-align: bottom;
+    padding: 12px 0 0;
+}
+
+.use-rate-area p:nth-child(3) {
+    font-family: "Noto Sans CJK JP";
+    font-weight: bold;
+    font-size: 15px;
+    padding-left: 18px;
+}
+
+.use-rate-area p span {
+    font-family: "Noto Sans CJK JP";
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.pj-flex-child-left {
+    width: 56%;
+    height: 40vh;
+}
+
+.pj-flex-child-right {
+    width: 42.4%;
+    height: 40vh;
+}
+
+.floor-map-2F-pj {
+    height: 100%;
+    text-align: center;
+}
+
+.pj-chart-area {
+    height: 48.5vh;
+    margin-top: 25px;
+}
+
+.pj-chart-figure {
+    text-align: center;
+    width: 90%;
+    height: calc(100% - 90px);
+    margin: 0 auto;
+}
+
+.pj-table th {
+    padding: 12px 20px;
+}
+
+.pj-table td {
+    padding: 19px 14px;
+
+}
+
+.fall-camera-area {
+    width: 68%;
+    margin: 0 auto;
+}
+
+.start-btn {
+    background-image: url(../img/pages/3F/btn_start.png);
+    background-size: contain;
+    width: 70px;
+    height: 30px;
+}
+
+.floor3-fall {
+    height: 91vh;
+}
+
+.parent:nth-child(1),.parent:nth-child(2) {
+    margin-bottom: 35px;
+}
+
+.select-area {
+    margin-top: 5px;
+}
+
+#heatmap {
+    width: 70%;
+    height: calc(100% - 106px);
+    margin: 0 auto;
+    border: 1px solid black;
+    background-image: url(../img/pages/2F/heatmap.png);
+    background-size: 100% 100%;
+}
+

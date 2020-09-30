@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>協創棟可視化サービス</title>
+    <link rel="stylesheet" href="./css/ress.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script text="text/javascript" src="./js/json.js"></script>
+    <script text="text/javascript" src="./js/jquery/jquery.js"></script>
+    <script text="text/javascript" src="./js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script text="text/javascript" src="./js/meeting-json.js"></script>
+    <script text="text/javascript" src="./js/function.js"></script>
+    <script text="text/javascript" src="./js/enra-commons.js"></script>
+    <script text="text/javascript" src="./js/mps-event-viewer.js"></script>
+    <script text="text/javascript" src="./js/index.js"></script>
+</head>
+
+<body>
+    <div class=" bg flex">
+        <div class="side-bar">
+            <h1><img src="./img/nav/logo.png" alt="協創棟可視化システム"></h1>
+            <nav>
+                <div class="nav-back">
+                    <p><a href="../top/index.html">戻る</a></p>
+                </div>
+                <div class="nav-f nav-4f">
+                    <p><a href="../communication4F/index.html">執務エリア・<br>コミュニケーションコリドー</a></p>
+                </div>
+                <div class="nav-f nav-3f">
+                    <p><a href="../communication3F/index.html">執務エリア・<br>コミュニケーションコリドー</a></p>
+                    <p class="nav-demo"><a class="selected" href="../fall/index.html">転倒検知デモ</a></p>
+                </div>
+
+                <div class="nav-f nav-2f">
+                    <p><a href="../meeting/index.html">会議室</a></p>
+                    <p><a href="../project/index.html">プロジェクトベース・<br>
+                        プロジェクトルーム</a></p>
+                </div>
+
+                <div class="nav-f nav-1f">
+                    <p><a href="../cafe/index.html">カフェライブラリー</a></p>
+                    <p><a href="../restaurant/index.html">レストラン</a></p>
+                </div>
+            </nav>
+        </div>
+        <div class="pages">
+
+            <!-- 各下層ページ -->
+            <div id="page" class="page">
+                <time id="update-time"></time>
+
+                <!-- コミュニケーションコリドー（転倒検知デモ） -->
+                <div id="floor3-fall-el" class="content floor3-fall">
+                    <p>Fall detection</p>
+                    <div class="flex fall-camera-area">
+                        <div id="camera0" class="parent">
+                            <canvas class="fallImage"></canvas>
+                            <!-- <img src="./img/pages/3F/cameraImage.png" alt=""> -->
+                            <div class="flex select-area">
+                                <select>
+                                    <option value="0" selected="">0 : 10.232.191.30:80</option>
+                                    <option value="1">1 : 10.232.191.31:80</option>
+                                    <option value="2">2 : 10.232.191.32:80</option>
+                                    <option value="3">3 : 10.232.191.33:80</option>
+                                    <option value="4">4 : 10.232.244.112:80</option>
+                                    <option value="5">5 : 10.232.244.114:80</option>
+                                    <option value="6">6 : 10.232.244.115:80</option>
+                                    <option value="7">7 : 10.232.244.113:80</option>
+                                </select>
+                                <button class="start-btn"></button>
+                            </div>
+                            <div class="error"></div>
+                            <div class="counter counter_object"></div>
+                            <div class="counter counter_head"></div>
+                            <div class="counter counter_face"></div>
+                        </div>
+                        <div id="camera1" class="parent">
+                            <!-- <canvas class="fallImage"></canvas> -->
+                            <img src="./img/pages/3F/cameraImage.png" alt="">
+                            <div class="flex select-area">
+                                <select>
+                                    <option value="0">0 : 10.232.191.30:80</option>
+                                    <option value="1" selected="">1 : 10.232.191.31:80</option>
+                                    <option value="2">2 : 10.232.191.32:80</option>
+                                    <option value="3">3 : 10.232.191.33:80</option>
+                                    <option value="4">4 : 10.232.244.112:80</option>
+                                    <option value="5">5 : 10.232.244.114:80</option>
+                                    <option value="6">6 : 10.232.244.115:80</option>
+                                    <option value="7">7 : 10.232.244.113:80</option>
+                                </select>
+                                <button class="start-btn"></button>
+                            </div>
+                            <div class="error"></div>
+                            <div class="counter counter_object"></div>
+                            <div class="counter counter_head"></div>
+                            <div class="counter counter_face"></div>
+                        </div>
+                        <div id="camera2" class="parent">
+                            <!-- <canvas class="fallImage"></canvas> -->
+                            <img src="./img/pages/3F/cameraImage.png" alt="">
+                            <div class="flex select-area">
+                                <select>
+                                    <option value="0">0 : 10.232.191.30:80</option>
+                                    <option value="1">1 : 10.232.191.31:80</option>
+                                    <option value="2" selected="">2 : 10.232.191.32:80</option>
+                                    <option value="3">3 : 10.232.191.33:80</option>
+                                    <option value="4">4 : 10.232.244.112:80</option>
+                                    <option value="5">5 : 10.232.244.114:80</option>
+                                    <option value="6">6 : 10.232.244.115:80</option>
+                                    <option value="7">7 : 10.232.244.113:80</option>
+                                </select>
+                                <button class="start-btn"></button>
+                            </div>
+                            <div class="error"></div>
+                            <div class="counter counter_object"></div>
+                            <div class="counter counter_head"></div>
+                            <div class="counter counter_face"></div>
+                        </div>
+                        <div id="camera3" class="parent">
+                            <canvas class="fallImage"></canvas>
+                            <!-- <img src="./img/pages/3F/cameraImage.png" alt=""> -->
+                            <div class="flex select-area">
+                                <select>
+                                    <option value="0">0 : 10.232.191.30:80</option>
+                                    <option value="1">1 : 10.232.191.31:80</option>
+                                    <option value="2">2 : 10.232.191.32:80</option>
+                                    <option value="3" selected="">3 : 10.232.191.33:80</option>
+                                    <option value="4">4 : 10.232.244.112:80</option>
+                                    <option value="5">5 : 10.232.244.114:80</option>
+                                    <option value="6">6 : 10.232.244.115:80</option>
+                                    <option value="7">7 : 10.232.244.113:80</option>
+                                </select><button class="start-btn"></button>
+                            </div>
+                            <div class="error"></div>
+                            <div class="counter counter_object"></div>
+                            <div class="counter counter_head"></div>
+                            <div class="counter counter_face"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

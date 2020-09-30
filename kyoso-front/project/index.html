@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>協創棟可視化サービス</title>
+    <link rel="stylesheet" href="./css/ress.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script text="text/javascript" src="../config/config.js"></script>
+    <script text="text/javascript" src="./js/json.js"></script>
+    <script text="text/javascript" src="./js/jquery/jquery.js"></script>
+    <script text="text/javascript" src="./js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script text="text/javascript" src="./js/Chart.min.js"></script>
+    <script text="text/javascript" src="./js/heatmap.min.js"></script>
+    <script text="text/javascript" src="./js/meeting-json.js"></script>
+    <script text="text/javascript" src="./js/function.js"></script>
+    <script text="text/javascript" src="./js/enra-commons.js"></script>
+    <script text="text/javascript" src="./js/mps-event-viewer.js"></script>
+    <script text="text/javascript" src="./js/index.js"></script>
+</head>
+
+<body>
+    <div class=" bg flex">
+        <div class="side-bar">
+            <h1><img src="./img/nav/logo.png" alt="協創棟可視化システム"></h1>
+            <nav>
+                <div class="nav-back">
+                    <p><a href="../top/index.html">戻る</a></p>
+                </div>
+                <div class="nav-f nav-4f">
+                    <p><a href="../communication4F/index.html">執務エリア・<br>コミュニケーションコリドー</a></p>
+                </div>
+                <div class="nav-f nav-3f">
+                    <p><a href="../communication3F/index.html">執務エリア・<br>コミュニケーションコリドー</a></p>
+                    <p class="nav-demo"><a href="../fall/index.html">転倒検知デモ</a></p>
+                </div>
+
+                <div class="nav-f nav-2f">
+                    <p><a href="../meeting/index.html">会議室</a></p>
+                    <p><a class="selected" href="../project/index.html">プロジェクトベース・<br>
+                        プロジェクトルーム</a></p>
+                </div>
+
+                <div class="nav-f nav-1f">
+                    <!-- <a><a href="../cafe/index.html">カフェライブラリー</a></p> -->
+                    <p><a href="../restaurant/index.html">カフェライブラリー・<br>レストラン</a></p>
+                </div>
+            </nav>
+        </div>
+        <div class="pages">
+
+            <!-- 各下層ページ -->
+            <div id="page" class="page">
+                <time id="update-time"></time>
+
+                <!-- 2F会議室 -->
+                <div id="floor2-meeting-el" class="flex">
+                    <div class="flex-child-left">
+                        <div class="content floor-map-1F">
+                            <p>Floor map</p>
+                            <canvas id="map-canvas"></canvas>
+                        </div>
+                        <div class="content population">
+                            <p>Population</p>
+
+                            <div class="pd">
+                                <div class="table-area">
+                                    <table class="table" id="list-table" style="width: 100%;">
+                                        <colgroup>
+                                            <col width="30%" span="1">
+                                            <col width="30%" span="1">
+                                            <col width="40%" span="1">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>会議室名</th>
+                                                <th>ステータス</th>
+                                                <th>使用開始/終了時刻</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>K2A</td>
+                                                <td id="K2A-status"></td>
+                                                <td id="K2A-time"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>K2B</td>
+                                                <td id="K2B-status"></td>
+                                                <td id="K2B-time"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>K2C</td>
+                                                <td id="K2C-status"></td>
+                                                <td id="K2C-time"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>K2D</td>
+                                                <td id="K2D-status"></td>
+                                                <td id="K2D-time"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>K2E</td>
+                                                <td id="K2E-status"></td>
+                                                <td id="K2E-time"></td>
+                                            </tr>
+                                            <TR>
+                                                <TD>K2F</TD>
+                                                <TD id="K2F-status"></TD>
+                                                <TD id="K2F-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2G</TD>
+                                                <TD id="K2G-status"></TD>
+                                                <TD id="K2G-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2H</TD>
+                                                <TD id="K2H-status"></TD>
+                                                <TD id="K2H-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2I</TD>
+                                                <TD id="K2I-status"></TD>
+                                                <TD id="K2I-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2J</TD>
+                                                <TD id="K2J-status"></TD>
+                                                <TD id="K2J-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2K</TD>
+                                                <TD id="K2K-status"></TD>
+                                                <TD id="K2K-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2L</TD>
+                                                <TD id="K2L-status"></TD>
+                                                <TD id="K2L-time"></TD>
+                                            </TR>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="flex-child-right">
+                        <div class="content floor-map-2F">
+                            <p>Use rate</p>
+                            <div class="pd flex flex-ct">
+                                <div class="rate-figure">
+                                    <img src="./img/pages/2F/rate.png" alt="">
+                                </div>
+                                <div class="use-rate-area">
+                                    <p>全体稼働率</p>
+                                    <p id="use-rate">66％</p>
+                                    <p><span>8</span>部屋 / 12 部屋</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content floor2F-number-pd">
+                            <p>number of use</p>
+                            <div class="content-pd">
+                                <table class="table" id="" width="100%">
+                                    <colgroup>
+                                        <col width="37%" span="1">
+                                        <col width="18%" span="1">
+                                        <col width="27%" span="1">
+                                        <col width="18%" span="1">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>場所</th>
+                                            <th>今日</th>
+                                            <th>直近1週間</th>
+                                            <th>直近1カ月</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- tr要素のid属性はサーバ側のエリアIDと一致させる -->
+                                        <tr id="">
+                                            <td>K2A</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2B</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2C</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2D</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2E</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2F</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2G</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2H</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2I</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2J</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2K</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2L</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 2Fプロジェクトベース・プロジェクトルーム -->
+                <div id="floor2-project-el">
+                    <div class="flex">
+                        <div class="pj-flex-child-left">
+                            <div class="content floor-map-2F-pj">
+                                <p>Floor map</p>
+                                <div id="heatmap"></div>
+                                <!-- <img src="./img/pages/2F/heatmap.png" alt=""> -->
+                            </div>
+                        </div>
+
+                        <div class="pj-flex-child-right">
+                            <div class="content floor-map-2F-pj">
+                                <p>Population</p>
+                                <div class="pd">
+                                    <div class="table-area">
+                                        <table class="table pj-table" id="list-table" style="width: 100%;">
+                                            <colgroup>
+                                                <col width="40%" span="1">
+                                                <col width="60%" span="1">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>場所</th>
+                                                    <th>人数</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>プロジェクトベース</td>
+                                                    <td id="project-count">-人</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Room A</td>
+                                                    <td id="a-count">-人</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Room B</td>
+                                                    <td id="b-count">-人</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Room C</td>
+                                                    <td id="c-count">-人</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Room D</td>
+                                                    <td id="d-count">-人</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content pj-chart-area">
+                        <p>Use rate</p>
+                        <div class="pj-chart-figure">
+                            <canvas id="chart"></canvas>
+                            <!-- <img src="./img/pages/2F/chart.png" alt=""> -->
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

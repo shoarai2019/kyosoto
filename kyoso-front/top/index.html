@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>協創棟可視化サービス</title>
+    <link rel="stylesheet" href="./css/ress.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script text="text/javascript" src="./js/json.js"></script>
+    <script text="text/javascript" src="./js/jquery/jquery.js"></script>
+    <script text="text/javascript" src="./js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script text="text/javascript" src="./js/meeting-json.js"></script>
+    <script text="text/javascript" src="./js/function.js"></script>
+    <!-- <script text="text/javascript" src="./js/floor2.js"></script> -->
+    <script text="text/javascript" src="./js/enra-commons.js"></script>
+    <script text="text/javascript" src="./js/mps-event-viewer.js"></script>
+    <script text="text/javascript" src="./js/index.js"></script>
+</head>
+
+<body>
+    <div id="bg" class="bg flex">
+        <div id="side-bar" class="side-bar">
+            <h1><img src="./img/nav/logo.png" alt="協創棟可視化システム"></h1>
+            <nav>
+                <div class="nav-f nav-4f">
+                    <p><a href="../communication4F/index.html">執務エリア・<br>コミュニケーションコリドー</a></p>
+                </div>
+                <div class="nav-f nav-3f">
+                    <p><a href="../communication3F/index.html">執務エリア・<br>コミュニケーションコリドー</a></p>
+                    <p class="nav-demo"><a href="../fall/index.html">転倒検知デモ</a></p>
+                </div>
+
+                <div class="nav-f nav-2f">
+                    <p><a href="../meeting/index.html">会議室</a></p>
+                    <p><a href="../project/index.html">プロジェクトベース・<br>
+                        プロジェクトルーム</a></p>
+                </div>
+
+                <div class="nav-f nav-1f">
+                    <!-- <a><a href="../cafe/index.html">カフェライブラリー</a></p> -->
+                    <p><a href="../restaurant/index.html">カフェライブラリー・<br>レストラン</a></p>
+                </div>
+            </nav>
+        </div>
+        <div class="pages">
+            <!-- topページ -->
+            <div id="top-page">
+                <div class="top-status flex">
+                    <div>
+                        <div class="period-swich flex">
+                            <p class="period-name active">NOW</p>
+                            <p class="period-name">WEEK</p>
+                            <p class="period-name">MONTH</p>
+                        </div>
+                        <time id="period" class="period"></time>
+                    </div>
+
+                    <time id="time">10:56<span>AM</span></time>
+                </div>
+
+                <div class="building">
+                    <div class="floor floor4"><div id="gradient4"></div></div>
+                    <div class="floor floor3"><div id="gradient3"></div></div>
+                    <div class="floor floor2"><div id="gradient2"></div></div>
+                    <div id="floor1" class="floor"><div id="gradient1"></div></div>
+                </div>
+            </div>
+
+            <!-- 各下層ページ -->
+            <div id="page" class="page">
+                <time id="update-time"></time>
+
+                <!-- 1Fレストラン/カフェライブラリー -->
+                <div id="floor1-el" class="flex">
+                    <div class="flex-child-left">
+                        <div class="content floor-map-1F">
+                            <p>Floor map</p>
+                            <img src="./img/pages/1F/floormap.png" alt="フロアマップを準備中です。">
+                        </div>
+                        <div class="content population">
+                            <p>Population</p>
+
+                            <div class="tb-select">
+                                <select id="sel">
+                                    <option value="real">リアルタイム</option>
+                                    <option value="week">直近1週間</option>
+                                </select>
+                            </div>
+
+                            <div class="pd">
+                                <div class="table-area">
+                                    <table class="table" id="counter-table" width="100%">
+                                        <colgroup>
+                                            <col width="30%" span="1">
+                                            <col width="70%" span="1">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>場所</th>
+                                                <th>ステータス</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- tr要素のid属性はサーバ側のエリアIDと一致させる -->
+                                            <tr id="counterSpecial">
+                                                <td>【カウンター】スペシャル</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="counterSetMeal">
+                                                <td>【カウンター】定食</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="counterNoodleA">
+                                                <td>【カウンター】そば・うどん</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="counterNoodleB">
+                                                <td>【カウンター】ラーメン</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="counterCurry">
+                                                <td>【カウンター】カレー</td>
+                                                <td>-</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table" id="sheet-table" width="100%">
+                                        <colgroup>
+                                            <col width="30%">
+                                            <col width="70%">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr id="sheetNorth">
+                                                <td>【座席】北側</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="sheetCenter">
+                                                <td>【座席】中央</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="sheetSouth">
+                                                <td>【座席】南側</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="sheetBox">
+                                                <td>【座席】ボックス席</td>
+                                                <td>-</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="content flex-child-right">
+                        <p>Live camera</p>
+                        <div class="pd">
+                            <div class="live-camera">
+                                <div class="camera-area flex">
+                                    <div>
+                                        <CANVAS height="0" class="mr-2" id="image1" style="width: 100%;"
+                                            name="imageCanvas"></CANVAS>
+                                        <img class="camera-tag" src="./img/pages/1F/icon-camaraA.png" alt="A:カウンター">
+                                    </div>
+                                    <div>
+                                        <CANVAS height="0" id="image2" style="width: 100%;" name="imageCanvas"></CANVAS>
+                                        <img src="./img/pages/1F/icon-camaraB.png" alt="B:カウンター">
+                                    </div>
+                                    <div>
+                                        <CANVAS height="0" class="mr-2" id="image3" style="width: 100%;"
+                                            name="imageCanvas"></CANVAS>
+                                        <img src="./img/pages/1F/icon-camaraC.png" alt="C:座席">
+                                    </div>
+                                    <div>
+                                        <CANVAS height="0" class="mr-2" id="image4" style="width: 100%;"
+                                            name="imageCanvas"></CANVAS>
+                                        <img src="./img/pages/1F/icon-camaraD.png" alt="D:座席">
+                                    </div>
+                                    <div>
+                                        <CANVAS height="0" id="image5" style="width: 100%;" name="imageCanvas"></CANVAS>
+                                        <img src="./img/pages/1F/icon-camaraE.png" alt="E:座席">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 2F会議室 -->
+                <div id="floor2-meeting-el" class="flex">
+                    <div class="flex-child-left">
+                        <div class="content floor-map-1F">
+                            <p>Floor map</p>
+                            <CANVAS height="0" id="map-canvas" style="width: 630px;"></CANVAS>
+                        </div>
+                        <div class="content population">
+                            <p>Population</p>
+
+                            <div class="pd">
+                                <div class="table-area">
+                                    <table class="table" id="list-table" style="width: 100%;">
+                                        <colgroup>
+                                            <col width="30%" span="1">
+                                            <col width="30%" span="1">
+                                            <col width="40%" span="1">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>会議室名</th>
+                                                <th>ステータス</th>
+                                                <th>使用開始/終了時刻</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>K2A</td>
+                                                <td id="K2A-status"></td>
+                                                <td id="K2A-time"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>K2B</td>
+                                                <td id="K2B-status"></td>
+                                                <td id="K2B-time"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>K2C</td>
+                                                <td id="K2C-status"></td>
+                                                <td id="K2C-time"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>K2D</td>
+                                                <td id="K2D-status"></td>
+                                                <td id="K2D-time"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>K2E</td>
+                                                <td id="K2E-status"></td>
+                                                <td id="K2E-time"></td>
+                                            </tr>
+                                            <TR>
+                                                <TD>K2F</TD>
+                                                <TD id="K2F-status"></TD>
+                                                <TD id="K2F-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2G</TD>
+                                                <TD id="K2G-status"></TD>
+                                                <TD id="K2G-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2H</TD>
+                                                <TD id="K2H-status"></TD>
+                                                <TD id="K2H-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2I</TD>
+                                                <TD id="K2I-status"></TD>
+                                                <TD id="K2I-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2J</TD>
+                                                <TD id="K2J-status"></TD>
+                                                <TD id="K2J-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2K</TD>
+                                                <TD id="K2K-status"></TD>
+                                                <TD id="K2K-time"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD>K2L</TD>
+                                                <TD id="K2L-status"></TD>
+                                                <TD id="K2L-time"></TD>
+                                            </TR>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="flex-child-right">
+                        <div class="content floor-map-2F">
+                            <p>Use rate</p>
+                            <div class="pd flex flex-ct">
+                                <div class="rate-figure">
+                                    <img src="./img/pages/2F/rate.png" alt="">
+                                </div>
+                                <div class="use-rate-area">
+                                    <p>全体稼働率</p>
+                                    <p id="use-rate">66％</p>
+                                    <p><span>8</span>部屋 / 12 部屋</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content floor2F-number-pd">
+                            <p>number of use</p>
+                            <div class="content-pd">
+                                <table class="table" id="" width="100%">
+                                    <colgroup>
+                                        <col width="37%" span="1">
+                                        <col width="18%" span="1">
+                                        <col width="27%" span="1">
+                                        <col width="18%" span="1">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>場所</th>
+                                            <th>今日</th>
+                                            <th>直近1週間</th>
+                                            <th>直近1カ月</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- tr要素のid属性はサーバ側のエリアIDと一致させる -->
+                                        <tr id="">
+                                            <td>K2A</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2B</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2C</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2D</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2E</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2F</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2G</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2H</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2I</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2J</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2K</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr id="">
+                                            <td>K2L</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 2Fプロジェクトベース・プロジェクトルーム -->
+                <div id="floor2-project-el">
+                    <div class="flex">
+                        <div class="pj-flex-child-left">
+                            <div class="content floor-map-2F-pj">
+                                <p>Floor map</p>
+                                <img src="./img/pages/2F/heatmap.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="pj-flex-child-right">
+                            <div class="content floor-map-2F-pj">
+                                <p>Population</p>
+                                <div class="pd">
+                                    <div class="table-area">
+                                        <table class="table pj-table" id="list-table" style="width: 100%;">
+                                            <colgroup>
+                                                <col width="40%" span="1">
+                                                <col width="60%" span="1">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>場所</th>
+                                                    <th>人数</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>プロジェクトベース</td>
+                                                    <td id="#">12人</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Room A</td>
+                                                    <td id="#">10人</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Room B</td>
+                                                    <td id="#">3人</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Room C</td>
+                                                    <td id="#">3人</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Room D</td>
+                                                    <td id="#">5人</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content pj-chart-area">
+                        <p>Use rate</p>
+                        <div class="pj-chart-figure">
+                            <img src="./img/pages/2F/chart.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- コミュニケーションコリドー（転倒検知デモ） -->
+                <div id="floor3-fall-el" class="content floor3-fall">
+                    <p>Fall detection</p>
+                    <div class="flex fall-camera-area">
+                        <div id="camera0" class="parent">
+                            <canvas width="503" height="378"></canvas>
+                            <!-- <img src="./img/pages/3F/cameraImage.png" alt=""> -->
+                            <div class="flex select-area">
+                                <select>
+                                    <option value="0" selected="">0 : 10.232.191.30:80</option>
+                                    <option value="1">1 : 10.232.191.31:80</option>
+                                    <option value="2">2 : 10.232.191.32:80</option>
+                                    <option value="3">3 : 10.232.191.33:80</option>
+                                    <option value="4">4 : 10.232.244.112:80</option>
+                                    <option value="5">5 : 10.232.244.114:80</option>
+                                    <option value="6">6 : 10.232.244.115:80</option>
+                                    <option value="7">7 : 10.232.244.113:80</option>
+                                </select>
+                                <button class="start-btn"></button>
+                            </div>
+                            <div class="error"></div>
+                            <div class="counter counter_object"></div>
+                            <div class="counter counter_head"></div>
+                            <div class="counter counter_face"></div>
+                        </div>
+                        <div id="camera1" class="parent">
+                            <!-- <canvas width="503" height="378"></canvas> -->
+                            <img src="./img/pages/3F/cameraImage.png" alt="">
+                            <div class="flex select-area">
+                                <select>
+                                    <option value="0">0 : 10.232.191.30:80</option>
+                                    <option value="1" selected="">1 : 10.232.191.31:80</option>
+                                    <option value="2">2 : 10.232.191.32:80</option>
+                                    <option value="3">3 : 10.232.191.33:80</option>
+                                    <option value="4">4 : 10.232.244.112:80</option>
+                                    <option value="5">5 : 10.232.244.114:80</option>
+                                    <option value="6">6 : 10.232.244.115:80</option>
+                                    <option value="7">7 : 10.232.244.113:80</option>
+                                </select>
+                                <button class="start-btn"></button>
+                            </div>
+                            <div class="error"></div>
+                            <div class="counter counter_object"></div>
+                            <div class="counter counter_head"></div>
+                            <div class="counter counter_face"></div>
+                        </div>
+                        <div id="camera2" class="parent">
+                            <!-- <canvas width="503" height="378"></canvas> -->
+                            <img src="./img/pages/3F/cameraImage.png" alt="">
+                            <div class="flex select-area">
+                                <select>
+                                    <option value="0">0 : 10.232.191.30:80</option>
+                                    <option value="1">1 : 10.232.191.31:80</option>
+                                    <option value="2" selected="">2 : 10.232.191.32:80</option>
+                                    <option value="3">3 : 10.232.191.33:80</option>
+                                    <option value="4">4 : 10.232.244.112:80</option>
+                                    <option value="5">5 : 10.232.244.114:80</option>
+                                    <option value="6">6 : 10.232.244.115:80</option>
+                                    <option value="7">7 : 10.232.244.113:80</option>
+                                </select>
+                                <button class="start-btn"></button>
+                            </div>
+                            <div class="error"></div>
+                            <div class="counter counter_object"></div>
+                            <div class="counter counter_head"></div>
+                            <div class="counter counter_face"></div>
+                        </div>
+                        <div id="camera3" class="parent">
+                            <canvas width="503" height="378"></canvas>
+                            <!-- <img src="./img/pages/3F/cameraImage.png" alt=""> -->
+                            <div class="flex select-area">
+                                <select>
+                                    <option value="0">0 : 10.232.191.30:80</option>
+                                    <option value="1">1 : 10.232.191.31:80</option>
+                                    <option value="2">2 : 10.232.191.32:80</option>
+                                    <option value="3" selected="">3 : 10.232.191.33:80</option>
+                                    <option value="4">4 : 10.232.244.112:80</option>
+                                    <option value="5">5 : 10.232.244.114:80</option>
+                                    <option value="6">6 : 10.232.244.115:80</option>
+                                    <option value="7">7 : 10.232.244.113:80</option>
+                                </select><button class="start-btn"></button>
+                            </div>
+                            <div class="error"></div>
+                            <div class="counter counter_object"></div>
+                            <div class="counter counter_head"></div>
+                            <div class="counter counter_face"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>協創棟可視化サービス</title>
+    <link rel="stylesheet" href="./css/ress.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script text="text/javascript" src="../config/config.js"></script>
+    <script text="text/javascript" src="./js/json.js"></script>
+    <script text="text/javascript" src="./js/jquery/jquery.js"></script>
+    <script text="text/javascript" src="./js/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script text="text/javascript" src="./js/meeting-json.js"></script>
+    <script text="text/javascript" src="./js/function.js"></script>
+    <!-- <script text="text/javascript" src="./js/floor2.js"></script> -->
+    <script text="text/javascript" src="./js/enra-commons.js"></script>
+    <script text="text/javascript" src="./js/mps-event-viewer.js"></script>
+    <script text="text/javascript" src="./js/index.js"></script>
+</head>
+
+<body>
+    <script text="text/javascript">
+        document.body.style.display = "none";
+
+        var inputText = prompt("パスワードを入力して下さい☆","");
+        // var x = [];
+        // var len = inputText.length;
+
+        // for(var i = 0 ; i <len; i++) {
+        // x[i] = inputText.charCodeAt(i);
+        // }
+
+        if(inputText == 'kyoso'){
+          document.body.style.display = "block";
+        }else{
+          location.href = "../top/index.html";
+        }
+    </script>
+    <div class="bg flex">
+        <div class="side-bar">
+            <h1><img src="./img/nav/logo.png" alt="協創棟可視化システム"></h1>
+            <nav>
+                <div class="nav-back">
+                    <p><a href="../top/index.html">戻る</a></p>
+                </div>
+                <div class="nav-f nav-4f">
+                    <p><a href="../communication4F/index.html">執務エリア・<br>コミュニケーションコリドー</a></p>
+                </div>
+                <div class="nav-f nav-3f">
+                    <p><a class="selected" href="../communication3F/index.html">執務エリア・<br>コミュニケーションコリドー</a></p>
+                    <p class="nav-demo"><a href="../fall/index.html">転倒検知デモ</a></p>
+                </div>
+
+                <div class="nav-f nav-2f">
+                    <p><a href="../meeting/index.html">会議室</a></p>
+                    <p><a href="../project/index.html">プロジェクトベース・<br>
+                        プロジェクトルーム</a></p>
+                </div>
+
+                <div class="nav-f nav-1f">
+                    <!-- <a><a href="../cafe/index.html">カフェライブラリー</a></p> -->
+                    <p><a href="../restaurant/index.html">カフェライブラリー・<br>レストラン</a></p>
+                </div>
+            </nav>
+        </div>
+        <div class="pages">
+
+            <!-- 各下層ページ -->
+            <div id="page" class="page">
+                <time id="update-time"></time>
+
+                <!-- 1Fレストラン/カフェライブラリー -->
+                <div id="floor1-el" class="flex">
+                    <div class="flex-child-left">
+                        <div class="content floor-map-1F">
+                            <p>Floor map</p>
+                            <img src="./img/pages/3F/img.png" alt="フロアマップを準備中です。">
+                        </div>
+                        <div class="content population">
+                            <p>Population</p>
+
+                            <div class="tb-select">
+                                <select id="sel">
+                                    <option value="real">リアルタイム</option>
+                                    <option value="week">直近1週間</option>
+                                </select>
+                            </div>
+
+                            <div class="pd">
+                                <div class="table-area">
+                                    <table class="table" id="counter-table" width="100%">
+                                        <colgroup>
+                                            <col width="30%" span="1">
+                                            <col width="70%" span="1">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>場所</th>
+                                                <th>ステータス</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- tr要素のid属性はサーバ側のエリアIDと一致させる -->
+                                            <tr id="counterSpecial">
+                                                <td>カメラA</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="counterSetMeal">
+                                                <td>カメラB</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="counterNoodleA">
+                                                <td>カメラC</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="counterNoodleB">
+                                                <td>カメラD</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr id="counterCurry">
+                                                <td>カメラE</td>
+                                                <td>-</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="content flex-child-right">
+                        <p>Live camera</p>
+                        <div class="pd">
+                            <div class="live-camera">
+                                <div class="camera-area flex">
+                                    <div>
+                                        <!-- <img src="http://10.232.88.10/cgi-bin/viewer/video.jpg?streamid=2&quality=3" alt=""> -->
+                                        <CANVAS height="0" class="mr-2" id="image1" style="width: 100%;"
+                                            name="imageCanvas"></CANVAS>
+                                        <img class="camera-tag" src="./img/pages/3F/icon-camaraA.png" alt="A:カウンター">
+                                    </div>
+                                    <div>
+                                        <CANVAS height="0" class="mr-2" id="image2" style="width: 100%;"
+                                            name="imageCanvas"></CANVAS>
+                                        <img src="./img/pages/3F/icon-camaraB.png" alt="B:カウンター">
+                                    </div>
+                                    <div>
+                                        <CANVAS height="0" class="mr-2" id="image3" style="width: 100%;"
+                                            name="imageCanvas"></CANVAS>
+                                        <img src="./img/pages/3F/icon-camaraC.png" alt="C:座席">
+                                    </div>
+                                    <div>
+                                        <CANVAS height="0" class="mr-2" id="image4" style="width: 100%;"
+                                            name="imageCanvas"></CANVAS>
+                                        <img src="./img/pages/3F/icon-camaraD.png" alt="D:座席">
+                                    </div>
+                                    <div>
+                                        <CANVAS height="0" id="image5" style="width: 100%;" name="imageCanvas"></CANVAS>
+                                        <img src="./img/pages/3F/icon-camaraE.png" alt="E:座席">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
